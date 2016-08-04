@@ -41,7 +41,7 @@ public class downloader {
                 String title = line.substring(line.indexOf("title=")+7,line.indexOf("\"",line.indexOf("title=")+7));
                 //System.out.println(title);
                 songs.add(new Music(new URL("https://www.youtubeinmp3.com/fetch/?video=https://www.youtube.com/watch?v="+id),title));
-                System.out.println("https://www.youtube.com/watch?v="+id);
+                //System.out.println("https://www.youtube.com/watch?v="+id);
             }
         }
        //NOT MY TrustManager CODE!!!!
@@ -70,7 +70,9 @@ public class downloader {
         
 
         ///// my code begins again
+        int i = 0;
         for(Music each : songs) {
+            i++;
             URLConnection downloadConnection = each.url.openConnection();
             InputStream data = downloadConnection.getInputStream();
 
@@ -83,6 +85,7 @@ public class downloader {
                     output.write(buffer,0,len);
                 }
                 output.close();
+                System.out.println(each.title+" "+i+"/"+songs.size());
 
             }
             catch(Exception exc) {
